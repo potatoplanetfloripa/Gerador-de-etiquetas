@@ -1,0 +1,215 @@
+/* Geral */
+body {
+  font-family: Arial, sans-serif;
+  padding: 10px;
+  background: linear-gradient(135deg, #473f36 0%, #b26a3d 100%);
+  color: #fff;
+  text-align: left; /* Alinha tudo à esquerda */
+}
+
+h1{
+    text-align: center;
+}
+form {
+  max-width: 400px;
+  margin: 0 auto;
+  background: #3a3227;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+fieldset {
+  border: 1px solid transparent;
+  border-image: linear-gradient(135deg, #473f36 0%, #b26a3d 100%);
+  border-image-slice: 1;
+  margin-bottom: 10px;
+  padding: 10px;
+  background: #2e2a23;
+  color: #fff;
+}
+
+legend {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+select {
+  margin-right: 8px;
+}
+
+.extra-item {
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  margin-bottom: 5px;
+}
+
+
+button {
+  padding: 5px 12px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #4b4b4b;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  display: flex;
+  margin: 1%;
+  align-items: center;
+  justify-content: center;
+  justify-self: anchor-center;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #473f36 0%, #b26a3d 100%);
+}
+
+/* Área da etiqueta na tela - só para visualização */
+#etiqueta {
+  margin: 20px auto;
+  width: 88mm;  /* ajusta a largura para 80mm + padding */
+  height: 40mm;
+  background: white;
+  color: black;
+  padding: 10px;
+  box-sizing: border-box;
+  white-space: pre-line;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: Arial, sans-serif;
+  border: none;  /* sem bordas */
+  text-align: center;
+}
+
+   @page {
+  size: 80mm 40mm;
+  margin: 0;
+}
+
+@media print {
+  body * {
+    visibility: hidden; /* Oculta todo o restante */
+  }
+
+  #etiqueta, #etiqueta * {
+    visibility: visible; /* Só a etiqueta é visível */
+  }
+
+  #etiqueta {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80mm;
+    height: 40mm;
+    margin: 0;
+    padding: 0;
+    page-break-before: avoid;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+    overflow: hidden;
+    background: #fff;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+  }
+
+  .etiqueta-conteudo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    padding: 0 5mm; /* padding horizontal apenas */
+    box-sizing: border-box;
+    gap: 5mm;
+  }
+
+  .logo-etiqueta {
+    width: 25mm;
+    height: auto;
+    max-height: 30mm;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .texto-etiqueta {
+    flex: 1;
+    font-size: 10px;
+    line-height: 1.2;
+    white-space: pre-line;
+    text-align: left;
+    color: #000;
+  }
+
+  #etiquetaTexto {
+    color: #000;
+    font-size: 10px;
+    white-space: pre-line;
+    text-align: left;
+    line-height: 1.2;
+    visibility: visible;
+    display: block;
+  }
+}
+
+/* Estilo para visualização fora da impressão */
+#etiqueta {
+  width: 80mm;
+  height: 40mm;
+  background: #fff;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.etiqueta-conteudo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  padding: 0 5mm;
+  box-sizing: border-box;
+  gap: 5mm;
+}
+
+.logo-etiqueta {
+  width: 25mm;
+  height: auto;
+  max-height: 30mm;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.texto-etiqueta {
+  flex: 1;
+  font-size: 10px;
+  line-height: 1.2;
+  white-space: pre-line;
+  text-align: left;
+  color: #000;
+}
+
+#etiquetaTexto {
+  color: #000;
+  font-size: 10px;
+  white-space: pre-line;
+  text-align: left;
+  line-height: 1.2;
+  visibility: visible;
+  display: block;
+}

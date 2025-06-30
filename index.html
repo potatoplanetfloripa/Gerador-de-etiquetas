@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title></title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <h1>Gerador de Etiquetas</h1>
+
+  <form id="formEtiqueta" onsubmit="return false;">
+    <fieldset>
+      <legend>Tipo</legend>
+      <label><input type="radio" name="tipo" value="Rosti" required> Rosti</label>
+      <label><input type="radio" name="tipo" value="Recheada"> Recheada</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Recheio</legend>
+      <label><input type="radio" name="recheio" value="Bacon" required> Bacon</label>
+      <label><input type="radio" name="recheio" value="Calabresa"> Calabresa</label>
+      <label><input type="radio" name="recheio" value="Estrogonofe de frango"> Estrogonofe de frango</label>
+      <label><input type="radio" name="recheio" value="Estrogonofe de carne"> Estrogonofe de carne</label>
+      <label><input type="radio" name="recheio" value="Estrogonofe de grão de bico"> Estrogonofe de grão de bico</label>
+      <label><input type="radio" name="recheio" value="Carne de panela"> Carne de panela</label>
+      <label><input type="radio" name="recheio" value="Bolonhesa"> Bolonhesa</label>
+      <label><input type="radio" name="recheio" value="Frango desfiado"> Frango desfiado</label>
+      <label><input type="radio" name="recheio" value="Pizza"> Pizza</label>
+      <label><input type="radio" name="recheio" value="Queijo"> Queijo</label>
+    </fieldset>
+
+    <fieldset>
+  <legend></legend>
+  <div class="extra-item">
+    <input style="width: 8%;" type="number" name="extra-requeijao" min="0" max="3" step="1" value="0" />
+    <span style="margin-left: 10px;">Requeijão</span>
+  </div>
+  <div class="extra-item">
+    <input style="width: 8%;" type="number" name="extra-cheddar" min="0" max="3" step="1" value="0" />
+    <span style="margin-left: 10px;">Cheddar</span>
+  </div>
+  <div class="extra-item">
+    <input style="width: 8%;" type="number" name="extra-cream-cheese" min="0" max="3" step="1" value="0" />
+    <span style="margin-left: 10px;">Cream Cheese</span>
+  </div>
+  <div class="extra-item">
+    <input style="width: 8%;" type="number" name="extra-queijo" min="0" max="3" step="1" value="0" />
+    <span style="margin-left: 10px;">Queijo</span>
+  </div>
+</fieldset>
+
+
+    <fieldset>
+      <legend>Final (máx 2)</legend>
+      <label><input type="checkbox" name="final" value="Cebola Crispy"> Cebola Crispy</label>
+      <label><input type="checkbox" name="final" value="Alho crocante"> Alho crocante</label>
+      <label><input type="checkbox" name="final" value="Azeitona"> Azeitona</label>
+      <label><input type="checkbox" name="final" value="Bacon"> Bacon</label>
+      <label><input type="checkbox" name="final" value="Requeijão"> Requeijão</label>
+      <label><input type="checkbox" name="final" value="Cheddar"> Cheddar</label>
+      <label><input type="checkbox" name="final" value="Cream chesse"> Cream chesse</label>
+      <label><input type="checkbox" name="final" value="Ervilha"> Ervilha</label>
+      <label><input type="checkbox" name="final" value="Milho"> Milho</label>
+      <label><input type="checkbox" name="final" value="Mussarela"> Mussarela</label>
+      <label><input type="checkbox" name="final" value="Presunto"> Presunto</label>
+      <label><input type="checkbox" name="final" value="Tomate"> Tomate</label>
+      <label><input type="checkbox" name="final" value="Batata palha"> Batata palha</label>
+    </fieldset>
+
+    <button type="button" onclick="gerarEtiqueta()">Gerar Etiqueta</button>
+    <button type="button" onclick="imprimirEtiqueta()">Imprimir</button>
+  </form>
+
+  <div id="etiqueta">
+    <div class="etiqueta-conteudo">
+      <img src="assets/logo.png" alt="Logo" class="logo-etiqueta" />
+      <div class="texto-etiqueta" id="etiquetaTexto">
+        <!-- Conteúdo gerado pelo JS -->
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
