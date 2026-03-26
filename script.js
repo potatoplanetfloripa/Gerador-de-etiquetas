@@ -1,5 +1,4 @@
 function gerarEtiqueta() {
-  const gramas = document.querySelector('input[name="gramas"]:checked');
   const tipo = document.querySelector('input[name="tipo"]:checked');
   const recheio = document.querySelector('input[name="recheio"]:checked');
   const finaisSelecionados = Array.from(document.querySelectorAll('input[name="final"]:checked'));
@@ -36,7 +35,6 @@ function gerarEtiqueta() {
 
   // Monta linhas para exibir na etiqueta
   const linhasEtiqueta = [
-    gramas.value,
     tipo.value,
     recheio.value,
     ...extrasText,
