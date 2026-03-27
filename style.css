@@ -45,11 +45,24 @@ select {
 
 .extra-item {
   display: flex;
-  align-items: left;
-  justify-content: left;
-  margin-bottom: 5px;
+  align-items: center;
+  gap: 1px;
+  margin-bottom: 8px;
 }
 
+.extra-item button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: #3f3e3e;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.extra-item button:active {
+  background: #5a5656;
+}
 
 button {
   padding: 5px 12px;
@@ -212,4 +225,23 @@ button:hover {
   line-height: 1.2;
   visibility: visible;
   display: block;
+}
+
+.input-extra {
+  width: 32px;
+  height: 28px;
+  text-align: center;
+  font-size: 14px;
+  padding: 0;
+}
+
+/* remove setinhas do input (mobile fica muito melhor) */
+.input-extra::-webkit-inner-spin-button,
+.input-extra::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-extra {
+  -moz-appearance: textfield;
 }
