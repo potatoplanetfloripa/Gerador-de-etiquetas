@@ -16,13 +16,11 @@
       <label><input type="radio" name="tipo" value="Recheada" required> Recheada</label>
     </fieldset>
 
-
     <fieldset>
       <legend></legend>
       <label><input type="checkbox" name="gramas" value="300g">300g</label>
       <label><input type="checkbox" name="gramas" value="400g">400g</label>
     </fieldset>
-
 
     <fieldset>
       <legend></legend>
@@ -41,34 +39,59 @@
       <label><input type="radio" name="recheio" value="Queijo"> Queijo</label>
     </fieldset>
 
+    <!-- EXTRAS AJUSTADO -->
     <fieldset>
   <legend></legend>
+
   <div class="extra-item">
-    <input style="width: 8%;" type="number" name="extra-requeijao" min="0" max="3" step="1" value="0" />
+    <button type="button" onclick="alterarExtra(this, -1)">-</button>
+    <input class="input-extra" type="number" name="extra-requeijao" min="0" max="3" step="1" value="0" />
+    <button type="button" onclick="alterarExtra(this, 1)">+</button>
+    <button type="button" onclick="limparExtra(this)">x</button>
     <span style="margin-left: 10px;">Requeijão (Alho-poró)</span>
   </div>
+
   <div class="extra-item">
-    <input style="width: 8%;" type="number" name="extra-requeijao" min="0" max="3" step="1" value="0" />
+    <button type="button" onclick="alterarExtra(this, -1)">-</button>
+    <input class="input-extra" type="number" name="extra-requeijao" min="0" max="3" step="1" value="0" />
+    <button type="button" onclick="alterarExtra(this, 1)">+</button>
+    <button type="button" onclick="limparExtra(this)">x</button>
     <span style="margin-left: 10px;">Requeijão (4 queijos)</span>
   </div>
+
   <div class="extra-item">
-    <input style="width: 8%;" type="number" name="extra-requeijao" min="0" max="3" step="1" value="0" />
+    <button type="button" onclick="alterarExtra(this, -1)">-</button>
+    <input class="input-extra" type="number" name="extra-requeijao" min="0" max="3" step="1" value="0" />
+    <button type="button" onclick="alterarExtra(this, 1)">+</button>
+    <button type="button" onclick="limparExtra(this)">x</button>
     <span style="margin-left: 10px;">Requeijão</span>
   </div>
+
   <div class="extra-item">
-    <input style="width: 8%;" type="number" name="extra-cheddar" min="0" max="3" step="1" value="0" />
+    <button type="button" onclick="alterarExtra(this, -1)">-</button>
+    <input class="input-extra" type="number" name="extra-cheddar" min="0" max="3" step="1" value="0" />
+    <button type="button" onclick="alterarExtra(this, 1)">+</button>
+    <button type="button" onclick="limparExtra(this)">x</button>
     <span style="margin-left: 10px;">Cheddar</span>
   </div>
+
   <div class="extra-item">
-    <input style="width: 8%;" type="number" name="extra-cream-cheese" min="0" max="3" step="1" value="0" />
+    <button type="button" onclick="alterarExtra(this, -1)">-</button>
+    <input class="input-extra" type="number" name="extra-cream-cheese" min="0" max="3" step="1" value="0" />
+    <button type="button" onclick="alterarExtra(this, 1)">+</button>
+    <button type="button" onclick="limparExtra(this)">x</button>
     <span style="margin-left: 10px;">Cream Cheese</span>
   </div>
+
   <div class="extra-item">
-    <input style="width: 8%;" type="number" name="extra-queijo" min="0" max="3" step="1" value="0" />
+    <button type="button" onclick="alterarExtra(this, -1)">-</button>
+    <input class="input-extra" type="number" name="extra-queijo" min="0" max="3" step="1" value="0" />
+    <button type="button" onclick="alterarExtra(this, 1)">+</button>
+    <button type="button" onclick="limparExtra(this)">x</button>
     <span style="margin-left: 10px;">Queijo</span>
   </div>
-</fieldset>
 
+</fieldset>
 
     <fieldset>
       <legend></legend>
@@ -97,12 +120,9 @@
   <div id="etiqueta">
     <div class="etiqueta-conteudo">
       <img src="assets/logo.png" alt="Logo" class="logo-etiqueta" />
-      <div class="texto-etiqueta" id="etiquetaTexto">
-        <!-- Conteúdo gerado pelo JS -->
-      </div>
+      <div class="texto-etiqueta" id="etiquetaTexto"></div>
     </div>
   </div>
-</div>
 
   <script src="./script.js"></script>
 </body>
