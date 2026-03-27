@@ -16,7 +16,7 @@ function gerarEtiqueta() {
 
   extrasInputs.forEach(input => {
     const quantidade = parseInt(input.value) || 0;
-    const nome = input.nextElementSibling.textContent.trim();
+    const nome = input.parentElement.querySelector('span').textContent.trim();
 
     if (quantidade > 0) {
       totalExtras += quantidade;
@@ -57,7 +57,7 @@ function imprimirEtiqueta() {
   const gerou = gerarEtiqueta();
   if (gerou) {
     const etiquetaDiv = document.getElementById('etiqueta');
-    etiquetaDiv.style.display = 'flex'; // garante que etiqueta está visível
+    etiquetaDiv.style.display = 'flex';
 
     setTimeout(() => {
       window.print();
@@ -77,17 +77,14 @@ function controlarExtras() {
   extrasInputs.forEach(input => {
     const valorAtual = parseInt(input.value) || 0;
 
-    // Se já atingiu 3 no total e esse input está com valor 0, desabilita para não permitir aumentar
     if (totalSelecionado >= 3 && valorAtual === 0) {
       input.disabled = true;
     } else {
       input.disabled = false;
-      
-      // Ajusta o max para não ultrapassar 3 no total
+
       const maxPermitido = 3 - (totalSelecionado - valorAtual);
       input.max = maxPermitido >= 0 ? maxPermitido : 0;
 
-      // Caso o valor esteja maior que o maxPermitido, ajusta para o máximo
       if (valorAtual > input.max) {
         input.value = input.max;
       }
@@ -102,3 +99,44 @@ window.addEventListener('DOMContentLoaded', () => {
     input.addEventListener('input', controlarExtras);
   });
 });
+
+
+// ===============================
+// NOVAS FUNÇÕES (BOTÕES MOBILE)
+// ===============================
+
+function alterarExtra(botao, delta) {
+  const container = botao.parentElement;
+  const input = container.querySelector('input[type="number"]');
+
+  let valor = parseInt(input.value) || 0;
+  valor += delta;
+
+  if (valor < 0) valor = 0;
+
+  // calcula total sem o atual
+  const extrasInputs = document.querySelectorAll('input[type="number"][name^="extra"]');
+  let total = 0;
+
+  extrasInputs.forEach(i => {
+    if (i !== input) {
+      total += parseInt(i.value) || 0;
+    }
+  });
+
+  // impede passar de 3 no total
+  if (valor + total > 3) return;
+
+  input.value = valor;
+
+  controlarExtras();
+}
+
+function limparExtra(botao) {
+  const container = botao.parentElement;
+  const input = container.querySelector('input[type="number"]');
+
+  input.value = 0;
+
+  controlarExtras();
+}
