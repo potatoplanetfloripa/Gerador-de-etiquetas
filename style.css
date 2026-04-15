@@ -245,3 +245,7 @@ button:hover {
 .input-extra {
   -moz-appearance: textfield;
 }
+.linha-etiqueta:first-child {
+  font-weight: bold;
+  font-size: 18px;
+}
