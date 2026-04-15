@@ -5,6 +5,10 @@ function gerarEtiqueta() {
   const gramasSelecionadas = Array.from(document.querySelectorAll('input[name="gramas"]:checked'));
   const extrasInputs = document.querySelectorAll('input[type="number"][name^="extra"]');
 
+  // NOVO
+  const textoExtra = document.getElementById('textoExtra')?.value.trim();
+  const posicaoTexto = document.querySelector('input[name="posicaoTexto"]:checked')?.value;
+
   if (!tipo || !recheio) {
     alert('Por favor, selecione um tipo e um recheio.');
     return false;
@@ -35,13 +39,22 @@ function gerarEtiqueta() {
   }
 
   // Monta linhas para exibir na etiqueta
-  const linhasEtiqueta = [
+  let linhasEtiqueta = [
     ...gramasSelecionadas.map(f => f.value),
     tipo.value,
     recheio.value,
     ...extrasText,
     ...finaisSelecionados.map(f => f.value)
   ];
+
+  // NOVO — adiciona texto extra
+  if (textoExtra) {
+    if (posicaoTexto === 'acima') {
+      linhasEtiqueta.unshift(textoExtra);
+    } else {
+      linhasEtiqueta.push(textoExtra);
+    }
+  }
 
   // Atualiza o conteúdo da etiqueta no HTML
   const etiquetaTexto = document.getElementById('etiquetaTexto');
@@ -102,7 +115,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 // ===============================
-// NOVAS FUNÇÕES (BOTÕES MOBILE)
+// BOTÕES MOBILE (EXTRAS)
 // ===============================
 
 function alterarExtra(botao, delta) {
