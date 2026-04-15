@@ -112,6 +112,27 @@
       <label><input type="checkbox" name="final" value="Tomate"> Tomate</label>
       <label><input type="checkbox" name="final" value="Batata palha"> Batata palha</label>
     </fieldset>
+    <fieldset>
+  <legend></legend>
+
+  <input 
+    type="text" 
+    id="textoExtra" 
+    placeholder="Ex: Nome do cliente" 
+    style="width: 100%; padding: 0px; margin-bottom: 8px;"
+  />
+
+  <label>
+    <input type="radio" name="posicaoTexto" value="acima" checked>
+    Acima
+  </label>
+
+  <label>
+    <input type="radio" name="posicaoTexto" value="abaixo">
+    Abaixo
+  </label>
+
+</fieldset>
 
     <button type="button" onclick="gerarEtiqueta()">Gerar Etiqueta</button>
     <button type="button" onclick="imprimirEtiqueta()">Imprimir</button>
