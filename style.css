@@ -81,7 +81,7 @@ button {
 }
 
 button:hover {
-  background: linear-gradient(135deg, #473f36 0%, #b26a3d 100%);
+  background: linear-gradient(135deg, #dbd2c8 0%, #473f3a 100%);
 }
 
 /* Área da etiqueta na tela - só para visualização */
@@ -231,7 +231,15 @@ button:hover {
   width: 32px;
   height: 28px;
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
+  padding: 0;
+}
+
+.input-extra {
+  width: 32px;
+  height: 28px;
+  text-align: center;
+  font-size: 12px;
   padding: 0;
 }
 
@@ -241,11 +249,23 @@ button:hover {
   -webkit-appearance: none;
   margin: 0;
 }
-
-.input-extra {
-  -moz-appearance: textfield;
-}
 .linha-etiqueta:first-child {
   font-weight: bold;
   font-size: 18px;
+}
+/* ABAS */
+.abas {
+  display: flex;
+  justify-content: center;
+  gap: 0px;
+  margin-bottom: 0px;
+}
+
+.abas button {
+  flex: 1;
+  max-width: 200px;
+}
+
+.aba-ativa {
+  background: linear-gradient(135deg, #dbd7d3 0%, #4b4a49 100%);
 }
