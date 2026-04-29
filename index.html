@@ -1,150 +1,261 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title></title>
+  <title>Gerador de Etiquetas</title>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
+
   <h1>Gerador de Etiquetas</h1>
-  
-  <form id="formEtiqueta" onsubmit="return false;">
-    <fieldset>
-      <legend></legend>
-      <label><input type="radio" name="tipo" value="Rosti" required> Rosti</label>
-      <label><input type="radio" name="tipo" value="Recheada" required> Recheada</label>
-    </fieldset>
 
-    <fieldset>
-      <legend></legend>
-      <label><input type="checkbox" name="gramas" value="300g">300g</label>
-      <label><input type="checkbox" name="gramas" value="400g">400g</label>
-    </fieldset>
+  <!-- ABAS -->
 
-    <fieldset>
-      <legend></legend>
-      <label><input type="radio" name="recheio" value="Cachoro-quente" required> Cachoro-quente</label>
-      <label><input type="radio" name="recheio" value="Bacon" required> Bacon</label>
-      <label><input type="radio" name="recheio" value="Calabresa"> Calabresa</label>
-      <label><input type="radio" name="recheio" value="Estrogonofe de frango"> Estrogonofe de frango</label>
-      <label><input type="radio" name="recheio" value="Estrogonofe de carne"> Estrogonofe de carne</label>
-      <label><input type="radio" name="recheio" value="Estrogonofe de grão de bico"> Estrogonofe de grão de bico</label>
-      <label><input type="radio" name="recheio" value="Carne de panela"> Carne de panela</label>
-      <label><input type="radio" name="recheio" value="Bolonhesa"> Bolonhesa</label>
-      <label><input type="radio" name="recheio" value="Frango desfiado"> Frango desfiado</label>
-      <label><input type="radio" name="recheio" value="Pizza"> Pizza</label>
-      <label><input type="radio" name="recheio" value="Lombo desfiado com BBQ"> Lombo desfiado com BBQ</label>
-      <label><input type="radio" name="recheio" value="Alho-poró com gorgonzola"> Alho-poró com gorgonzola</label>
-      <label><input type="radio" name="recheio" value="Queijo"> Queijo</label>
-    </fieldset>
-
-    <!-- EXTRAS AJUSTADO -->
-    <fieldset>
-  <legend></legend>
-
-  <div class="extra-item">
-    <button type="button" onclick="alterarExtra(this, -1)">-</button>
-    <input class="input-extra" type="number" name="extra-requeijao" min="0" max="3" step="1" value="0" />
-    <button type="button" onclick="alterarExtra(this, 1)">+</button>
-    <button type="button" onclick="limparExtra(this)">x</button>
-    <span style="margin-left: 10px;">Req (Alho-poró)</span>
+  <div class="abas">
+    <button onclick="trocarAba('potato')" id="btn-potato" class="aba-ativa">Potato Planet</button>
+    <button onclick="trocarAba('novo')" id="btn-novo">Croa Planet</button>
   </div>
 
-  <div class="extra-item">
-    <button type="button" onclick="alterarExtra(this, -1)">-</button>
-    <input class="input-extra" type="number" name="extra-requeijao" min="0" max="3" step="1" value="0" />
-    <button type="button" onclick="alterarExtra(this, 1)">+</button>
-    <button type="button" onclick="limparExtra(this)">x</button>
-    <span style="margin-left: 10px;">Req (4 queijos)</span>
-  </div>
+  <!-- ========================= -->
 
-  <div class="extra-item">
-    <button type="button" onclick="alterarExtra(this, -1)">-</button>
-    <input class="input-extra" type="number" name="extra-requeijao" min="0" max="3" step="1" value="0" />
-    <button type="button" onclick="alterarExtra(this, 1)">+</button>
-    <button type="button" onclick="limparExtra(this)">x</button>
-    <span style="margin-left: 10px;">Requeijão</span>
-  </div>
+  <!-- ABA POTATO -->
 
-  <div class="extra-item">
-    <button type="button" onclick="alterarExtra(this, -1)">-</button>
-    <input class="input-extra" type="number" name="extra-cheddar" min="0" max="3" step="1" value="0" />
-    <button type="button" onclick="alterarExtra(this, 1)">+</button>
-    <button type="button" onclick="limparExtra(this)">x</button>
-    <span style="margin-left: 10px;">Cheddar</span>
-  </div>
+  <!-- ========================= -->
 
-  <div class="extra-item">
-    <button type="button" onclick="alterarExtra(this, -1)">-</button>
-    <input class="input-extra" type="number" name="extra-cream-cheese" min="0" max="3" step="1" value="0" />
-    <button type="button" onclick="alterarExtra(this, 1)">+</button>
-    <button type="button" onclick="limparExtra(this)">x</button>
-    <span style="margin-left: 10px;">Cream Cheese</span>
-  </div>
+  <div id="aba-potato" class="aba-conteudo">
 
-  <div class="extra-item">
-    <button type="button" onclick="alterarExtra(this, -1)">-</button>
-    <input class="input-extra" type="number" name="extra-queijo" min="0" max="3" step="1" value="0" />
-    <button type="button" onclick="alterarExtra(this, 1)">+</button>
-    <button type="button" onclick="limparExtra(this)">x</button>
-    <span style="margin-left: 10px;">Queijo</span>
-  </div>
+<form onsubmit="return false;">
 
-</fieldset>
+  <fieldset>
+    <label><input type="radio" name="tipo" value="Rosti" required> Rosti</label>
+    <label><input type="radio" name="tipo" value="Recheada" required> Recheada</label>
+  </fieldset>
 
-    <fieldset>
-      <legend></legend>
-      <label><input type="checkbox" name="final" value="Requeijão (alho-poró)">Requeijão (alho-poró)</label>
-      <label><input type="checkbox" name="final" value="Requeijão (4 queijos)">Requeijão (4 Queijos)</label>
-      <label><input type="checkbox" name="final" value="Palmito"> Palmito</label>
-      <label><input type="checkbox" name="final" value="Cebola Crispy"> Cebola Crispy</label>
-      <label><input type="checkbox" name="final" value="Alho crocante"> Alho crocante</label>
-      <label><input type="checkbox" name="final" value="Azeitona"> Azeitona</label>
-      <label><input type="checkbox" name="final" value="Bacon"> Bacon</label>
-      <label><input type="checkbox" name="final" value="Requeijão"> Requeijão</label>
-      <label><input type="checkbox" name="final" value="Cheddar"> Cheddar</label>
-      <label><input type="checkbox" name="final" value="Cream chesse"> Cream chesse</label>
-      <label><input type="checkbox" name="final" value="Ervilha"> Ervilha</label>
-      <label><input type="checkbox" name="final" value="Milho"> Milho</label>
-      <label><input type="checkbox" name="final" value="Mussarela"> Mussarela</label>
-      <label><input type="checkbox" name="final" value="Presunto"> Presunto</label>
-      <label><input type="checkbox" name="final" value="Tomate"> Tomate</label>
-      <label><input type="checkbox" name="final" value="Batata palha"> Batata palha</label>
-    </fieldset>
-    <fieldset>
-  <legend></legend>
+  <fieldset>
+    <label><input type="checkbox" name="gramas" value="300g">300g</label>
+    <label><input type="checkbox" name="gramas" value="400g">400g</label>
+  </fieldset>
 
-  <input 
-    type="text" 
-    id="textoExtra" 
-    placeholder="Ex: Nome do cliente" 
-    style="width: 100%; padding: 0px; margin-bottom: 8px; padding-bottom: 4px; padding-top: 4px;"
-  />
+  <fieldset>
+    <label><input type="radio" name="recheio" value="Cachoro-quente" required> Cachoro-quente</label>
+    <label><input type="radio" name="recheio" value="Bacon" required> Bacon</label>
+    <label><input type="radio" name="recheio" value="Calabresa"> Calabresa</label>
+    <label><input type="radio" name="recheio" value="Estrogonofe de frango"> Estrogonofe de frango</label>
+    <label><input type="radio" name="recheio" value="Estrogonofe de carne"> Estrogonofe de carne</label>
+    <label><input type="radio" name="recheio" value="Estrogonofe de grão de bico"> Estrogonofe de grão de bico</label>
+    <label><input type="radio" name="recheio" value="Carne de panela"> Carne de panela</label>
+    <label><input type="radio" name="recheio" value="Bolonhesa"> Bolonhesa</label>
+    <label><input type="radio" name="recheio" value="Frango desfiado"> Frango desfiado</label>
+    <label><input type="radio" name="recheio" value="Pizza"> Pizza</label>
+    <label><input type="radio" name="recheio" value="Lombo desfiado com BBQ"> Lombo desfiado com BBQ</label>
+    <label><input type="radio" name="recheio" value="Alho-poró com gorgonzola"> Alho-poró com gorgonzola</label>
+    <label><input type="radio" name="recheio" value="Queijo"> Queijo</label>
+  </fieldset>
 
-  <label>
-    <input type="radio" name="posicaoTexto" value="acima" checked>
-    Acima
-  </label>
+  <!-- EXTRAS -->
+  <fieldset>
 
-  <label>
-    <input type="radio" name="posicaoTexto" value="abaixo">
-    Abaixo
-  </label>
-
-</fieldset>
-
-    <button type="button" onclick="gerarEtiqueta()">Gerar Etiqueta</button>
-    <button type="button" onclick="imprimirEtiqueta()">Imprimir</button>
-  </form>
-
-  <div id="etiqueta">
-    <div class="etiqueta-conteudo">
-      <img src="assets/logo.png" alt="Logo" class="logo-etiqueta" />
-      <div class="texto-etiqueta" id="etiquetaTexto"></div>
+    <div class="extra-item">
+      <button type="button" onclick="alterarExtra(this, -1)">-</button>
+      <input class="input-extra" type="number" name="extra-1" min="0" max="3" value="0" />
+      <button type="button" onclick="alterarExtra(this, 1)">+</button>
+      <button type="button" onclick="limparExtra(this)">x</button>
+      <span>Req (Alho-poró)</span>
     </div>
+
+    <div class="extra-item">
+      <button type="button" onclick="alterarExtra(this, -1)">-</button>
+      <input class="input-extra" type="number" name="extra-2" min="0" max="3" value="0" />
+      <button type="button" onclick="alterarExtra(this, 1)">+</button>
+      <button type="button" onclick="limparExtra(this)">x</button>
+      <span>Req (4 queijos)</span>
+    </div>
+
+    <div class="extra-item">
+      <button type="button" onclick="alterarExtra(this, -1)">-</button>
+      <input class="input-extra" type="number" name="extra-3" min="0" max="3" value="0" />
+      <button type="button" onclick="alterarExtra(this, 1)">+</button>
+      <button type="button" onclick="limparExtra(this)">x</button>
+      <span>Requeijão</span>
+    </div>
+
+    <div class="extra-item">
+      <button type="button" onclick="alterarExtra(this, -1)">-</button>
+      <input class="input-extra" type="number" name="extra-4" min="0" max="3" value="0" />
+      <button type="button" onclick="alterarExtra(this, 1)">+</button>
+      <button type="button" onclick="limparExtra(this)">x</button>
+      <span>Cheddar</span>
+    </div>
+
+    <div class="extra-item">
+      <button type="button" onclick="alterarExtra(this, -1)">-</button>
+      <input class="input-extra" type="number" name="extra-5" min="0" max="3" value="0" />
+      <button type="button" onclick="alterarExtra(this, 1)">+</button>
+      <button type="button" onclick="limparExtra(this)">x</button>
+      <span>Cream Cheese</span>
+    </div>
+
+    <div class="extra-item">
+      <button type="button" onclick="alterarExtra(this, -1)">-</button>
+      <input class="input-extra" type="number" name="extra-6" min="0" max="3" value="0" />
+      <button type="button" onclick="alterarExtra(this, 1)">+</button>
+      <button type="button" onclick="limparExtra(this)">x</button>
+      <span>Queijo</span>
+    </div>
+
+  </fieldset>
+
+  <!-- FINAIS -->
+  <fieldset>
+    <label><input type="checkbox" name="final" value="Requeijão (alho-poró)">Requeijão (alho-poró)</label>
+    <label><input type="checkbox" name="final" value="Requeijão (4 queijos)">Requeijão (4 queijos)</label>
+    <label><input type="checkbox" name="final" value="Palmito"> Palmito</label>
+    <label><input type="checkbox" name="final" value="Cebola Crispy"> Cebola Crispy</label>
+    <label><input type="checkbox" name="final" value="Alho crocante"> Alho crocante</label>
+    <label><input type="checkbox" name="final" value="Azeitona"> Azeitona</label>
+    <label><input type="checkbox" name="final" value="Bacon"> Bacon</label>
+    <label><input type="checkbox" name="final" value="Requeijão"> Requeijão</label>
+    <label><input type="checkbox" name="final" value="Cheddar"> Cheddar</label>
+    <label><input type="checkbox" name="final" value="Cream chesse"> Cream chesse</label>
+    <label><input type="checkbox" name="final" value="Ervilha"> Ervilha</label>
+    <label><input type="checkbox" name="final" value="Milho"> Milho</label>
+    <label><input type="checkbox" name="final" value="Mussarela"> Mussarela</label>
+    <label><input type="checkbox" name="final" value="Presunto"> Presunto</label>
+    <label><input type="checkbox" name="final" value="Tomate"> Tomate</label>
+    <label><input type="checkbox" name="final" value="Batata palha"> Batata palha</label>
+  </fieldset>
+
+  <!-- TEXTO EXTRA -->
+  <fieldset>
+    <input type="text" id="textoExtra" placeholder="Ex: Nome do cliente" style="width:100%;" />
+    <label><input type="radio" name="posicaoTexto" value="acima" checked> Acima</label>
+    <label><input type="radio" name="posicaoTexto" value="abaixo"> Abaixo</label>
+  </fieldset>
+
+  <button type="button" onclick="gerarEtiqueta()">Gerar Etiqueta</button>
+  <button type="button" onclick="imprimirEtiqueta()">Imprimir</button>
+
+</form>
+
+<!-- PREVIEW -->
+<div id="etiqueta">
+  <div class="etiqueta-conteudo">
+    <img src="assets/logo.png" class="logo-etiqueta" />
+    <div class="texto-etiqueta" id="etiquetaTexto"></div>
+  </div>
+</div>
+
+  </div>
+
+  <!-- ========================= -->
+
+  <!-- ABA NOVO NEGÓCIO -->
+
+  <!-- ========================= -->
+
+  <div id="aba-novo" class="aba-conteudo" style="display:none;">
+
+<form onsubmit="return false;">
+
+  <!-- (MESMA ESTRUTURA) -->
+  <fieldset>
+    <label><input type="radio" name="tipo" value="M" required> M</label>
+    <label><input type="radio" name="tipo" value="G" required> G</label>
+  </fieldset>
+
+  <fieldset>
+    <label><input type="checkbox" name="gramas" value="Croissant">Croissant</label>
+  </fieldset>
+
+  <fieldset>
+    <label><input type="radio" name="recheio" value="Cachoro-quente" required> Cachoro-quente</label>
+    <label><input type="radio" name="recheio" value="Bacon" required> Bacon</label>
+    <label><input type="radio" name="recheio" value="Calabresa"> Calabresa</label>
+    <label><input type="radio" name="recheio" value="Estrogonofe de frango"> Estrogonofe de frango</label>
+    <label><input type="radio" name="recheio" value="Estrogonofe de carne"> Estrogonofe de carne</label>
+    <label><input type="radio" name="recheio" value="Estrogonofe de grão de bico"> Estrogonofe de grão de bico</label>
+    <label><input type="radio" name="recheio" value="Carne de panela"> Carne de panela</label>
+    <label><input type="radio" name="recheio" value="Bolonhesa"> Bolonhesa</label>
+    <label><input type="radio" name="recheio" value="Frango desfiado"> Frango desfiado</label>
+    <label><input type="radio" name="recheio" value="Pizza"> Pizza</label>
+    <label><input type="radio" name="recheio" value="Lombo desfiado com BBQ"> Lombo desfiado com BBQ</label>
+    <label><input type="radio" name="recheio" value="Alho-poró com gorgonzola"> Alho-poró com gorgonzola</label>
+    <label><input type="radio" name="recheio" value="Queijo"> Queijo</label>
+  </fieldset>
+
+  <!-- EXTRAS -->
+  <fieldset>
+    <div class="extra-item">
+      <button type="button" onclick="alterarExtra(this, -1)">-</button>
+      <input class="input-extra" type="number" name="extra-n1" min="0" max="3" value="0" />
+      <button type="button" onclick="alterarExtra(this, 1)">+</button>
+      <button type="button" onclick="limparExtra(this)">x</button>
+      <span>Queijo</span>
+    </div>
+
+    <div class="extra-item">
+      <button type="button" onclick="alterarExtra(this, -1)">-</button>
+      <input class="input-extra" type="number" name="extra-n1" min="0" max="3" value="0" />
+      <button type="button" onclick="alterarExtra(this, 1)">+</button>
+      <button type="button" onclick="limparExtra(this)">x</button>
+      <span>Requeijão</span>
+    </div>
+
+    <div class="extra-item">
+      <button type="button" onclick="alterarExtra(this, -1)">-</button>
+      <input class="input-extra" type="number" name="extra-n2" min="0" max="3" value="0" />
+      <button type="button" onclick="alterarExtra(this, 1)">+</button>
+      <button type="button" onclick="limparExtra(this)">x</button>
+      <span>Cheddar</span>
+    </div>
+
+  </fieldset>
+
+  <!-- FINAIS -->
+  <fieldset>
+    <label><input type="checkbox" name="final" value="Requeijão (alho-poró)">Requeijão (alho-poró)</label>
+    <label><input type="checkbox" name="final" value="Requeijão (4 queijos)">Requeijão (4 queijos)</label>
+    <label><input type="checkbox" name="final" value="Palmito"> Palmito</label>
+    <label><input type="checkbox" name="final" value="Cebola Crispy"> Cebola Crispy</label>
+    <label><input type="checkbox" name="final" value="Alho crocante"> Alho crocante</label>
+    <label><input type="checkbox" name="final" value="Azeitona"> Azeitona</label>
+    <label><input type="checkbox" name="final" value="Bacon"> Bacon</label>
+    <label><input type="checkbox" name="final" value="Requeijão"> Requeijão</label>
+    <label><input type="checkbox" name="final" value="Cheddar"> Cheddar</label>
+    <label><input type="checkbox" name="final" value="Cream chesse"> Cream chesse</label>
+    <label><input type="checkbox" name="final" value="Ervilha"> Ervilha</label>
+    <label><input type="checkbox" name="final" value="Milho"> Milho</label>
+    <label><input type="checkbox" name="final" value="Mussarela"> Mussarela</label>
+    <label><input type="checkbox" name="final" value="Presunto"> Presunto</label>
+    <label><input type="checkbox" name="final" value="Tomate"> Tomate</label>
+    <label><input type="checkbox" name="final" value="Batata palha"> Batata palha</label>
+  </fieldset>
+
+  <!-- TEXTO EXTRA -->
+  <fieldset>
+    <input type="text" id="textoExtra" placeholder="Ex: Nome do cliente" style="width:100%;" />
+    <label><input type="radio" name="posicaoTexto" value="acima" checked> Acima</label>
+    <label><input type="radio" name="posicaoTexto" value="abaixo"> Abaixo</label>
+  </fieldset>
+
+  <button type="button" onclick="gerarEtiquetaNovo()">Gerar Etiqueta</button>
+  <button type="button" onclick="imprimirEtiqueta('novo')">Imprimir</button>
+
+</form>
+
+<!-- PREVIEW -->
+<div id="etiqueta">
+  <div class="etiqueta-conteudo">
+    <img src="assets/logo2.png.png" class="logo-etiqueta" />
+    <div class="texto-etiqueta" id="etiquetaTextoNovo"></div>
+  </div>
+</div>
+
   </div>
 
   <script src="./script.js"></script>
+
 </body>
 </html>
