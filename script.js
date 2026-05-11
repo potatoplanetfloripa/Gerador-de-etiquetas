@@ -44,10 +44,6 @@ const extrasInputs = container.querySelectorAll('input[type="number"][name^="ext
 const textoExtra = container.querySelector('#textoExtra')?.value.trim();
 const posicaoTexto = container.querySelector('input[name="posicaoTexto"]:checked')?.value;
 
-if (!tipo || !recheio) {
-alert('Por favor, selecione um tipo e um recheio.');
-return false;
-}
 
 // EXTRAS
 let totalExtras = 0;
