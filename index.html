@@ -160,12 +160,7 @@
 <form onsubmit="return false;">
 
   <!-- (MESMA ESTRUTURA) -->
-  <fieldset>
-    <label><input type="radio" name="tipo" value="M" required> M</label>
-    <label><input type="radio" name="tipo" value="G" required> G</label>
-  </fieldset>
-
-  <fieldset>
+    <fieldset>
     <label><input type="checkbox" name="gramas" value="Croissant">Croissant</label>
   </fieldset>
 
@@ -183,6 +178,11 @@
     <label><input type="radio" name="recheio" value="Lombo desfiado com BBQ"> Lombo desfiado com BBQ</label>
     <label><input type="radio" name="recheio" value="Alho-poró com gorgonzola"> Alho-poró com gorgonzola</label>
     <label><input type="radio" name="recheio" value="Queijo"> Queijo</label>
+    <h2>Doces</h2>
+    <label><input type="radio" name="recheio" value="Chocolate com morango"> Chocolate com morango</label>
+    <label><input type="radio" name="recheio" value="Creme de pistache"> Creme de pistache</label>
+    <label><input type="radio" name="recheio" value="Chocolate com M&M"> Chocolate com M&M</label>
+    <label><input type="radio" name="recheio" value="Chocolate branco com Negresco"> Chocolate branco com Negresco</label>
   </fieldset>
 
   <!-- EXTRAS -->
@@ -231,6 +231,14 @@
     <label><input type="checkbox" name="final" value="Presunto"> Presunto</label>
     <label><input type="checkbox" name="final" value="Tomate"> Tomate</label>
     <label><input type="checkbox" name="final" value="Batata palha"> Batata palha</label>
+    <h2>Doces</h2>
+    <label><input type="checkbox" name="final" value="Chocolate preto meio amargo"> Chocolate preto meio amargo</label>
+    <label><input type="checkbox" name="final" value="Creme de chocolate branco"> Creme de chocolate branco</label>
+    <label><input type="checkbox" name="final" value="Morango"> Morango</label>
+    <label><input type="checkbox" name="final" value="Negresco"> Negresco</label>
+    <label><input type="checkbox" name="final" value="M&M"> M&M</label>
+    <label><input type="checkbox" name="final" value="Creme de pistache"> Creme de pistache</label>
+  
   </fieldset>
 
   <!-- TEXTO EXTRA -->
@@ -246,7 +254,7 @@
 </form>
 
 <!-- PREVIEW -->
-+ <div id="etiquetaNovo">
+ <div id="etiquetaNovo">
   <div class="etiqueta-conteudo">
     <img src="assets/logo2.png.png" class="logo-etiqueta" />
     <div class="texto-etiqueta" id="etiquetaTextoNovo"></div>
