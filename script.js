@@ -76,7 +76,7 @@ return false;
 // LINHAS
 let linhasEtiqueta = [
 ...gramasSelecionadas.map(f => f.value),
-tipo.value(f => f.value),
+tipo.value,
 recheio.value,
 ...extrasText,
 ...finaisSelecionados.map(f => f.value)
