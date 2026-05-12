@@ -2,212 +2,214 @@
 CONTROLE DE ABAS
 =============================== */
 function trocarAba(aba) {
-const abaPotato = document.getElementById('aba-potato');
-const abaNovo = document.getElementById('aba-novo');
+  const abaPotato = document.getElementById('aba-potato');
+  const abaNovo = document.getElementById('aba-novo');
 
-const btnPotato = document.getElementById('btn-potato');
-const btnNovo = document.getElementById('btn-novo');
+  const btnPotato = document.getElementById('btn-potato');
+  const btnNovo = document.getElementById('btn-novo');
 
-if (aba === 'potato') {
-abaPotato.style.display = 'block';
-abaNovo.style.display = 'none';
+  if (aba === 'potato') {
+    abaPotato.style.display = 'block';
+    abaNovo.style.display = 'none';
 
-```
-btnPotato.classList.add('aba-ativa');
-btnNovo.classList.remove('aba-ativa');
-```
+    btnPotato.classList.add('aba-ativa');
+    btnNovo.classList.remove('aba-ativa');
+  } else {
+    abaPotato.style.display = 'none';
+    abaNovo.style.display = 'block';
 
-} else {
-abaPotato.style.display = 'none';
-abaNovo.style.display = 'block';
-
-```
-btnNovo.classList.add('aba-ativa');
-btnPotato.classList.remove('aba-ativa');
-```
-
-}
+    btnNovo.classList.add('aba-ativa');
+    btnPotato.classList.remove('aba-ativa');
+  }
 }
 
 /* ===============================
-GERADOR BASE (REUTILIZÁVEL)
+GERADOR BASE
 =============================== */
 function gerarEtiquetaBase(containerId, etiquetaTextoId) {
-const container = document.getElementById(containerId);
+  const container = document.getElementById(containerId);
 
-const tipo = container.querySelector('input[name="tipo"]:checked');
-const recheio = container.querySelector('input[name="recheio"]:checked');
-const finaisSelecionados = Array.from(container.querySelectorAll('input[name="final"]:checked'));
-const gramasSelecionadas = Array.from(container.querySelectorAll('input[name="gramas"]:checked'));
-const extrasInputs = container.querySelectorAll('input[type="number"][name^="extra"]');
+  const tipo = container.querySelector('input[name="tipo"]:checked');
+  const recheio = container.querySelector('input[name="recheio"]:checked');
+  const finaisSelecionados = Array.from(container.querySelectorAll('input[name="final"]:checked'));
+  const gramasSelecionadas = Array.from(container.querySelectorAll('input[name="gramas"]:checked'));
+  const extrasInputs = container.querySelectorAll('input[type="number"][name^="extra"]');
 
-const textoExtra = container.querySelector('#textoExtra')?.value.trim();
-const posicaoTexto = container.querySelector('input[name="posicaoTexto"]:checked')?.value;
+  const textoExtra = container.querySelector('#textoExtra')?.value.trim();
+  const posicaoTexto = container.querySelector('input[name="posicaoTexto"]:checked')?.value;
 
+  // Tipo obrigatório apenas na Potato Planet
+  if (containerId === 'aba-potato' && !tipo) {
+    alert('Por favor, selecione Rosti ou Recheada.');
+    return false;
+  }
 
-// EXTRAS
-let totalExtras = 0;
-const extrasText = [];
+  // Recheio obrigatório nas duas abas
+  if (!recheio) {
+    alert('Por favor, selecione um recheio.');
+    return false;
+  }
 
-extrasInputs.forEach(input => {
-const quantidade = parseInt(input.value) || 0;
-const nome = input.parentElement.querySelector('span')?.textContent.trim();
+  // EXTRAS
+  let totalExtras = 0;
+  const extrasText = [];
 
-if (quantidade > 0) {
-  totalExtras += quantidade;
+  extrasInputs.forEach(input => {
+    const quantidade = parseInt(input.value) || 0;
+    const nome = input.parentElement.querySelector('span')?.textContent.trim();
 
-  const nomeTratado = nome ? nome.toLowerCase() : 'extra';
-  extrasText.push(`${quantidade}x ${nomeTratado}`);
-}
+    if (quantidade > 0) {
+      totalExtras += quantidade;
+      const nomeTratado = nome ? nome.toLowerCase() : 'extra';
+      extrasText.push(`${quantidade}x ${nomeTratado}`);
+    }
+  });
 
-});
+  if (totalExtras > 3) {
+    alert('Você pode selecionar no máximo 3 unidades no total para os extras.');
+    return false;
+  }
 
-if (totalExtras > 3) {
-alert('Você pode selecionar no máximo 3 unidades no total para os extras.');
-return false;
-}
+  // FINAIS
+  if (finaisSelecionados.length > 2) {
+    alert('Você pode selecionar no máximo 2 finais.');
+    return false;
+  }
 
-// FINAIS
-if (finaisSelecionados.length > 2) {
-alert('Você pode selecionar no máximo 2 finais.');
-return false;
-}
+  // LINHAS DA ETIQUETA
+  let linhasEtiqueta = [
+    ...gramasSelecionadas.map(f => f.value),
+    tipo ? tipo.value : '',
+    recheio ? recheio.value : '',
+    ...extrasText,
+    ...finaisSelecionados.map(f => f.value)
+  ];
 
-// LINHAS
-let linhasEtiqueta = [
-...gramasSelecionadas.map(f => f.value),
-tipo.value,
-recheio.value,
-...extrasText,
-...finaisSelecionados.map(f => f.value)
-];
+  // TEXTO EXTRA
+  if (textoExtra) {
+    if (posicaoTexto === 'acima') {
+      linhasEtiqueta.unshift(textoExtra);
+    } else {
+      linhasEtiqueta.push(textoExtra);
+    }
+  }
 
-// TEXTO EXTRA
-if (textoExtra) {
-if (posicaoTexto === 'acima') {
-linhasEtiqueta.unshift(textoExtra);
-} else {
-linhasEtiqueta.push(textoExtra);
-}
-}
+  // RENDER
+  const etiquetaTexto = document.getElementById(etiquetaTextoId);
 
-// RENDER
-const etiquetaTexto = document.getElementById(etiquetaTextoId);
-etiquetaTexto.innerHTML = linhasEtiqueta
-.filter(Boolean)
-.map(linha => `<div>${linha}</div>`)
-.join('');
+  etiquetaTexto.innerHTML = linhasEtiqueta
+    .filter(Boolean)
+    .map(linha => `<div>${linha}</div>`)
+    .join('');
 
-return true;
+  return true;
 }
 
 /* ===============================
 GERADORES ESPECÍFICOS
 =============================== */
 function gerarEtiqueta() {
-return gerarEtiquetaBase('aba-potato', 'etiquetaTexto');
+  return gerarEtiquetaBase('aba-potato', 'etiquetaTexto');
 }
 
 function gerarEtiquetaNovo() {
-return gerarEtiquetaBase('aba-novo', 'etiquetaTextoNovo');
+  return gerarEtiquetaBase('aba-novo', 'etiquetaTextoNovo');
 }
 
 /* ===============================
 IMPRESSÃO
 =============================== */
 function imprimirEtiqueta(tipo = 'potato') {
-const gerou = tipo === 'novo' ? gerarEtiquetaNovo() : gerarEtiqueta();
+  const gerou = tipo === 'novo' ? gerarEtiquetaNovo() : gerarEtiqueta();
 
-if (!gerou) return;
+  if (!gerou) return;
 
-const etiquetaId = tipo === 'novo' ? 'etiquetaNovo' : 'etiqueta';
-const etiquetaDiv = document.getElementById(etiquetaId);
+  const etiquetaId = tipo === 'novo' ? 'etiquetaNovo' : 'etiqueta';
+  const etiquetaDiv = document.getElementById(etiquetaId);
 
-etiquetaDiv.style.display = 'flex';
+  etiquetaDiv.style.display = 'flex';
 
-setTimeout(() => {
-window.print();
-}, 200);
+  setTimeout(() => {
+    window.print();
+  }, 200);
 }
 
 /* ===============================
-CONTROLE DE EXTRAS (GLOBAL)
+CONTROLE DE EXTRAS
 =============================== */
 function controlarExtras() {
-const extrasInputs = document.querySelectorAll('input[type="number"][name^="extra"]');
+  const extrasInputs = document.querySelectorAll('input[type="number"][name^="extra"]');
 
-let totalSelecionado = 0;
+  let totalSelecionado = 0;
 
-extrasInputs.forEach(input => {
-totalSelecionado += parseInt(input.value) || 0;
-});
+  extrasInputs.forEach(input => {
+    totalSelecionado += parseInt(input.value) || 0;
+  });
 
-extrasInputs.forEach(input => {
-const valorAtual = parseInt(input.value) || 0;
+  extrasInputs.forEach(input => {
+    const valorAtual = parseInt(input.value) || 0;
 
-```
-if (totalSelecionado >= 3 && valorAtual === 0) {
-  input.disabled = true;
-} else {
-  input.disabled = false;
+    if (totalSelecionado >= 3 && valorAtual === 0) {
+      input.disabled = true;
+    } else {
+      input.disabled = false;
 
-  const maxPermitido = 3 - (totalSelecionado - valorAtual);
-  input.max = maxPermitido >= 0 ? maxPermitido : 0;
+      const maxPermitido = 3 - (totalSelecionado - valorAtual);
+      input.max = maxPermitido >= 0 ? maxPermitido : 0;
 
-  if (valorAtual > input.max) {
-    input.value = input.max;
-  }
-}
-```
-
-});
+      if (valorAtual > input.max) {
+        input.value = input.max;
+      }
+    }
+  });
 }
 
 /* ===============================
-BOTÕES MOBILE (EXTRAS)
+BOTÕES DOS EXTRAS
 =============================== */
 function alterarExtra(botao, delta) {
-const container = botao.parentElement;
-const input = container.querySelector('input[type="number"]');
+  const container = botao.parentElement;
+  const input = container.querySelector('input[type="number"]');
 
-let valor = parseInt(input.value) || 0;
-valor += delta;
+  let valor = parseInt(input.value) || 0;
+  valor += delta;
 
-if (valor < 0) valor = 0;
+  if (valor < 0) valor = 0;
 
-const extrasInputs = document.querySelectorAll('input[type="number"][name^="extra"]');
-let total = 0;
+  const extrasInputs = document.querySelectorAll('input[type="number"][name^="extra"]');
+  let total = 0;
 
-extrasInputs.forEach(i => {
-if (i !== input) {
-total += parseInt(i.value) || 0;
-}
-});
+  extrasInputs.forEach(i => {
+    if (i !== input) {
+      total += parseInt(i.value) || 0;
+    }
+  });
 
-if (valor + total > 3) return;
+  if (valor + total > 3) return;
 
-input.value = valor;
+  input.value = valor;
 
-controlarExtras();
+  controlarExtras();
 }
 
 function limparExtra(botao) {
-const container = botao.parentElement;
-const input = container.querySelector('input[type="number"]');
+  const container = botao.parentElement;
+  const input = container.querySelector('input[type="number"]');
 
-input.value = 0;
+  input.value = 0;
 
-controlarExtras();
+  controlarExtras();
 }
 
 /* ===============================
 INIT
 =============================== */
 window.addEventListener('DOMContentLoaded', () => {
-controlarExtras();
+  controlarExtras();
 
-const extrasInputs = document.querySelectorAll('input[type="number"][name^="extra"]');
-extrasInputs.forEach(input => {
-input.addEventListener('input', controlarExtras);
-});
+  const extrasInputs = document.querySelectorAll('input[type="number"][name^="extra"]');
+
+  extrasInputs.forEach(input => {
+    input.addEventListener('input', controlarExtras);
+  });
 });
