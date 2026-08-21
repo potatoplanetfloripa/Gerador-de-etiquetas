@@ -2,25 +2,16 @@
 CONTROLE DE ABAS
 =============================== */
 function trocarAba(aba) {
-  const abaPotato = document.getElementById('aba-potato');
-  const abaNovo = document.getElementById('aba-novo');
+  const abas = ['potato', 'novo', 'marmitas'];
 
-  const btnPotato = document.getElementById('btn-potato');
-  const btnNovo = document.getElementById('btn-novo');
+  abas.forEach(nomeAba => {
+    const conteudo = document.getElementById(`aba-${nomeAba}`);
+    const botao = document.getElementById(`btn-${nomeAba}`);
+    const ativa = nomeAba === aba;
 
-  if (aba === 'potato') {
-    abaPotato.style.display = 'block';
-    abaNovo.style.display = 'none';
-
-    btnPotato.classList.add('aba-ativa');
-    btnNovo.classList.remove('aba-ativa');
-  } else {
-    abaPotato.style.display = 'none';
-    abaNovo.style.display = 'block';
-
-    btnNovo.classList.add('aba-ativa');
-    btnPotato.classList.remove('aba-ativa');
-  }
+    if (conteudo) conteudo.style.display = ativa ? 'block' : 'none';
+    if (botao) botao.classList.toggle('aba-ativa', ativa);
+  });
 }
 
 /* ===============================
@@ -116,17 +107,91 @@ function gerarEtiquetaNovo() {
   return gerarEtiquetaBase('aba-novo', 'etiquetaTextoNovo');
 }
 
+
+const MARMITAS = {
+  'carne-vinho': {
+    nome: 'Carne de panela ao\nmolho de vinho tinto',
+    peso: 'Aprox. 490g'
+  },
+  'fricasse': {
+    nome: 'Fricassê',
+    peso: 'Aprox. 450g'
+  },
+  'parmegiana-frango': {
+    nome: 'Parmegiana de frango',
+    peso: 'Aprox. 450g'
+  },
+  'estrogonofe-frango': {
+    nome: 'Estrogonofe de frango',
+    peso: 'Aprox. 440g'
+  },
+  'frango-arroz-feijao': {
+    nome: 'Frango grelhado,\narroz e feijão',
+    peso: 'Aprox. 500g'
+  },
+  'penne-bolonhesa': {
+    nome: 'Macarrão penne\ncom molho bolonhesa',
+    peso: 'Aprox. 450g'
+  },
+  'estrogonofe-grao-bico': {
+    nome: 'Estrogonofe de\ngrão de bico',
+    peso: 'Aprox. 440g'
+  },
+  'carne-panela': {
+    nome: 'Carne de panela',
+    peso: 'Aprox. 490g'
+  }
+};
+
+function gerarEtiquetaMarmita() {
+  const selecionada = document.querySelector('#aba-marmitas input[name="marmita"]:checked');
+
+  if (!selecionada) {
+    alert('Por favor, selecione uma marmita.');
+    return false;
+  }
+
+  const marmita = MARMITAS[selecionada.value];
+  const etiquetaTexto = document.getElementById('etiquetaTextoMarmitas');
+  const observacao = document.getElementById('observacaoMarmita')?.value.trim();
+  const posicaoObservacao = document.querySelector('#aba-marmitas input[name="posicaoObservacaoMarmita"]:checked')?.value;
+
+  const blocoObservacao = observacao
+    ? `<div class="marmita-observacao">${observacao}</div>`
+    : '';
+
+  etiquetaTexto.innerHTML = `
+    ${posicaoObservacao === 'acima' ? blocoObservacao : ''}
+    <div class="marmita-nome">${marmita.nome.replace(/\n/g, '<br>')}</div>
+    <div class="marmita-peso">${marmita.peso}</div>
+    ${posicaoObservacao === 'abaixo' ? blocoObservacao : ''}
+  `;
+
+  return true;
+}
+
 /* ===============================
 IMPRESSÃO
 =============================== */
 function imprimirEtiqueta(tipo = 'potato') {
-  const gerou = tipo === 'novo' ? gerarEtiquetaNovo() : gerarEtiqueta();
+  let gerou;
+  let etiquetaId;
+
+  if (tipo === 'novo') {
+    gerou = gerarEtiquetaNovo();
+    etiquetaId = 'etiquetaNovo';
+  } else if (tipo === 'marmitas') {
+    gerou = gerarEtiquetaMarmita();
+    etiquetaId = 'etiquetaMarmitas';
+  } else {
+    gerou = gerarEtiqueta();
+    etiquetaId = 'etiqueta';
+  }
 
   if (!gerou) return;
 
-  const etiquetaId = tipo === 'novo' ? 'etiquetaNovo' : 'etiqueta';
+  document.body.dataset.etiquetaImpressao = etiquetaId;
   const etiquetaDiv = document.getElementById(etiquetaId);
-
   etiquetaDiv.style.display = 'flex';
 
   setTimeout(() => {
