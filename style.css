@@ -112,11 +112,12 @@ button:hover {
   }
 
   #etiqueta, #etiqueta *,
-  #etiquetaNovo, #etiquetaNovo * {
+  #etiquetaNovo, #etiquetaNovo *,
+  #etiquetaMarmitas, #etiquetaMarmitas * {
     visibility: visible;
   }
 
-  #etiqueta, #etiquetaNovo {
+  #etiqueta, #etiquetaNovo, #etiquetaMarmitas {
     position: absolute;
     top: 0;
     left: 0;
@@ -269,4 +270,78 @@ button:hover {
   justify-content: flex-start;
   padding: 0;
   box-sizing: border-box;
+}
+
+
+/* ===============================
+   ETIQUETAS DE MARMITAS
+   =============================== */
+#etiquetaMarmitas {
+  margin: 20px auto;
+  width: 80mm;
+  height: 40mm;
+  background: #fff;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.texto-marmita {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: normal;
+}
+
+.marmita-nome {
+  width: 100%;
+  font-size: 13px;
+  line-height: 1.15;
+  font-weight: 700;
+  text-align: center;
+}
+
+.marmita-peso {
+  width: 100%;
+  margin-top: 2.5mm;
+  font-size: 10px;
+  line-height: 1.15;
+  font-weight: 600;
+  text-align: center;
+}
+
+.marmita-observacao {
+  width: 100%;
+  margin: 1mm 0;
+  font-size: 10px;
+  line-height: 1.1;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media print {
+  .texto-marmita {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .marmita-nome {
+    font-size: 13px;
+    line-height: 1.15;
+    font-weight: 700;
+  }
+
+  .marmita-peso {
+    margin-top: 2.5mm;
+    font-size: 10px;
+    font-weight: 600;
+  }
 }
