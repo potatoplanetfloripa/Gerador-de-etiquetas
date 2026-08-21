@@ -15,7 +15,8 @@
 
   <div class="abas">
     <button onclick="trocarAba('potato')" id="btn-potato" class="aba-ativa">Potato Planet</button>
-    <button onclick="trocarAba('novo')" id="btn-novo">Croa Planet </button>
+    <button onclick="trocarAba('novo')" id="btn-novo">Croa Planet</button>
+    <button onclick="trocarAba('marmitas')" id="btn-marmitas">Marmitas</button>
   </div>
 
   <!-- ========================= -->
@@ -271,6 +272,44 @@
   </div>
 </div>
 
+  </div>
+
+  <!-- ========================= -->
+  <!-- ABA MARMITAS -->
+  <!-- ========================= -->
+
+  <div id="aba-marmitas" class="aba-conteudo" style="display:none;">
+    <form onsubmit="return false;">
+      <fieldset>
+        <legend>Escolha a marmita</legend>
+        <label><input type="radio" name="marmita" value="carne-vinho"> 1. Carne de panela ao molho de vinho</label>
+        <label><input type="radio" name="marmita" value="fricasse"> 2. Fricassê</label>
+        <label><input type="radio" name="marmita" value="parmegiana-frango"> 3. Parmegiana de frango</label>
+        <label><input type="radio" name="marmita" value="estrogonofe-frango"> 4. Estrogonofe de frango</label>
+        <label><input type="radio" name="marmita" value="frango-arroz-feijao"> 5. Frango grelhado, arroz e feijão</label>
+        <label><input type="radio" name="marmita" value="penne-bolonhesa"> 6. Macarrão com bolonhesa</label>
+        <label><input type="radio" name="marmita" value="estrogonofe-grao-bico"> 7. Estrogonofe de grão de bico</label>
+        <label><input type="radio" name="marmita" value="carne-panela"> 8. Carne de panela</label>
+      </fieldset>
+
+      <!-- OBSERVAÇÕES -->
+      <fieldset>
+        <input type="text" id="observacaoMarmita" placeholder="Ex: Nome do cliente" style="width:100%;" />
+        <label><input type="radio" name="posicaoObservacaoMarmita" value="acima" checked> Acima</label>
+        <label><input type="radio" name="posicaoObservacaoMarmita" value="abaixo"> Abaixo</label>
+      </fieldset>
+
+      <button type="button" onclick="gerarEtiquetaMarmita()">Gerar Etiqueta</button>
+      <button type="button" onclick="imprimirEtiqueta('marmitas')">Imprimir</button>
+    </form>
+
+    <!-- PREVIEW -->
+    <div id="etiquetaMarmitas" class="etiqueta-padrao etiqueta-marmita">
+      <div class="etiqueta-conteudo">
+        <img src="assets/logo.png" class="logo-etiqueta" alt="Potato Planet" />
+        <div class="texto-etiqueta texto-marmita" id="etiquetaTextoMarmitas"></div>
+      </div>
+    </div>
   </div>
 
   <script src="./script.js"></script>
